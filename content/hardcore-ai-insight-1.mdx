@@ -1,0 +1,37 @@
+---
+title: "Hardcore AI Insight #1"
+date: "2026-04-22"
+excerpt: "Why inference-time compute is the new moat — and how to build on top of it."
+tags: ["ai", "systems", "inference"]
+---
+
+## The Constraint No One Is Talking About
+
+Most discussions about AI capability focus on training. More data, more parameters, better
+RLHF. But the actual constraint in production is **inference-time compute allocation**.
+
+$$
+\text{Quality}(x) = \int_0^T f(\theta, x, t) \, dt
+$$
+
+That integral is money. And right now, the market is wildly mispricing how it scales.
+
+## Why This Architecture Matters
+
+When you decouple generation from verification, you unlock something qualitatively different:
+
+```python
+def generate_and_verify(prompt: str, budget: int) -> str:
+    candidates = [model.generate(prompt) for _ in range(budget)]
+    scores = verifier.score_all(candidates)
+    return candidates[scores.argmax()]
+```
+
+The verifier is the moat. Not the generator.
+
+## What Follows
+
+In the next post I'll show exactly which verification architectures are defensible and which
+are commoditized. The math is not obvious. The investment thesis definitely isn't.
+
+<SignalCapture variant="investor" />

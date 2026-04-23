@@ -1,0 +1,43 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Prose / MDX content styles */
+.prose {
+  max-width: 65ch;
+}
+
+.prose h1 { font-size: 1.75rem; font-weight: 700; margin: 2rem 0 1rem; line-height: 1.2; }
+.prose h2 { font-size: 1.35rem; font-weight: 600; margin: 2rem 0 0.75rem; line-height: 1.3; }
+.prose h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+.prose p { line-height: 1.75; margin: 1rem 0; }
+.prose a { text-decoration: underline; text-underline-offset: 3px; }
+.prose a:hover { opacity: 0.7; }
+.prose ul, .prose ol { padding-left: 1.5rem; margin: 1rem 0; }
+.prose li { line-height: 1.75; margin: 0.25rem 0; }
+.prose ul { list-style-type: disc; }
+.prose ol { list-style-type: decimal; }
+.prose blockquote { border-left: 3px solid #0a0a0a; padding-left: 1rem; margin: 1.5rem 0; font-style: italic; opacity: 0.8; }
+.prose code:not(pre > code) { font-size: 0.875em; background: #f0f0f0; padding: 0.15em 0.35em; border-radius: 3px; font-family: var(--font-geist-mono), monospace; }
+.prose pre { background: #0a0a0a !important; border-radius: 6px; margin: 1.5rem 0; overflow-x: auto; }
+.prose pre code { font-size: 0.875rem; font-family: var(--font-geist-mono), monospace; }
+.prose hr { border: none; border-top: 1px solid #e5e5e5; margin: 2.5rem 0; }
+.prose img { max-width: 100%; border-radius: 4px; margin: 1.5rem 0; }
