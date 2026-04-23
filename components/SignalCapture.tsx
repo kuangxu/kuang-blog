@@ -36,7 +36,7 @@ export function SignalCapture({ variant }: SignalCaptureProps) {
         </p>
         <div className="flex gap-4 text-sm">
           <a
-            href="https://x.com/"
+            href="https://x.com/ProfKuang"
             target="_blank"
             rel="noopener noreferrer"
             className="underline underline-offset-2 hover:opacity-60 font-mono"
@@ -44,12 +44,20 @@ export function SignalCapture({ variant }: SignalCaptureProps) {
             → X / Twitter
           </a>
           <a
-            href="https://linkedin.com/"
+            href="https://www.linkedin.com/in/kuangxu/"
             target="_blank"
             rel="noopener noreferrer"
             className="underline underline-offset-2 hover:opacity-60 font-mono"
           >
             → LinkedIn
+          </a>
+          <a
+            href="http://kuangxu.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:opacity-60 font-mono"
+          >
+            → Website
           </a>
         </div>
       </div>

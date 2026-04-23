@@ -12,9 +12,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://kuangxu.org";
+
 export const metadata: Metadata = {
   title: "Kuang Xu",
   description: "Founder. Investor. Writing about AI systems, capital, and the math underneath both.",
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName: "Kuang Xu",
+    title: "Kuang Xu",
+    description: "Founder. Investor. Writing about AI systems, capital, and the math underneath both.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@ProfKuang",
+    creator: "@ProfKuang",
+    title: "Kuang Xu",
+    description: "Founder. Investor. Writing about AI systems, capital, and the math underneath both.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({

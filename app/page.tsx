@@ -15,14 +15,14 @@ export default function Home() {
           architectures worth exploiting, capital allocation, and the math underneath both.
         </p>
         <div className="flex gap-5 mt-5 text-sm font-mono">
-          <a href="https://x.com/" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">
+          <a href="https://x.com/ProfKuang" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">
             X →
           </a>
-          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">
+          <a href="https://www.linkedin.com/in/kuangxu/" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">
             LinkedIn →
           </a>
-          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">
-            GitHub →
+          <a href="http://kuangxu.org" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">
+            Website →
           </a>
         </div>
       </section>

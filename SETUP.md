@@ -200,10 +200,44 @@ Upload images to the `assets` bucket in Supabase Storage. Reference them in MDX 
 
 ## Next Steps
 
-- [ ] Replace placeholder social links (X, LinkedIn, GitHub) in `app/page.tsx`
+### Supabase
+
+- [ ] **Create a project** at [supabase.com](https://supabase.com) → New Project. Pick a region close to your users. Note the project URL and anon/service-role keys.
+- [ ] **Run the schema** — open the Supabase dashboard → SQL Editor → paste and run `supabase-schema.sql`. This creates the `subscribers` table with the required columns and indexes.
+- [ ] **Create the storage bucket** — go to Storage → New Bucket → name it `assets` → set visibility to **Public**. No additional policies needed for read access on a public bucket.
+- [ ] **Disable RLS for server-side writes** (optional, already handled by service role key) — the subscribe route uses the service role key which bypasses RLS by default. If you ever switch to the anon key, add a policy: `CREATE POLICY "insert_subscribers" ON subscribers FOR INSERT WITH CHECK (true);`
+- [ ] **Copy env values** — from Supabase dashboard → Project Settings → API:
+  - `NEXT_PUBLIC_SUPABASE_URL` = Project URL
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = `anon` / `public` key
+  - `SUPABASE_SERVICE_ROLE_KEY` = `service_role` key (keep secret — never expose client-side)
+
+### Postmark
+
+- [ ] **Create a Postmark account** and add a sender domain under Sender Signatures. Verify the DNS records it gives you.
+- [ ] **Create two message streams** in your server:
+  - `outbound` — Transactional, used for welcome emails
+  - `broadcast` — Broadcasts, used for new post announcements
+- [ ] Set `POSTMARK_SERVER_TOKEN` (from Server → API Tokens) and `POSTMARK_FROM_EMAIL` (your verified sender address).
+
+### Vercel
+
+- [ ] **Push to GitHub** and import the repo at [vercel.com/new](https://vercel.com/new). Vercel auto-detects Next.js — no framework config needed.
+- [ ] **Add all env vars** under Project Settings → Environment Variables. Add each of the six variables from `.env.local`. Make sure `SUPABASE_SERVICE_ROLE_KEY` and `BROADCAST_SECRET` are set to **Production** only (not Preview/Development unless you have separate Supabase projects).
+- [ ] **Set a custom domain** — Project Settings → Domains → Add. Point your DNS `A`/`CNAME` records as instructed. Vercel provisions TLS automatically.
+- [ ] **Verify the subscribe flow** after deploy: fill out the form on the live site, check the Supabase `subscribers` table for the new row, and confirm the welcome email arrived.
+- [ ] **Test broadcast** by running:
+  ```bash
+  curl -X POST https://your-domain.com/api/broadcast \
+    -H "Authorization: Bearer <BROADCAST_SECRET>" \
+    -H "Content-Type: application/json" \
+    -d '{"postTitle":"Test","postUrl":"https://your-domain.com","excerpt":"Testing broadcast."}'
+  ```
+
+### Content & polish
+
+- [ ] Replace placeholder social links (X, LinkedIn, GitHub) in [app/page.tsx](app/page.tsx)
 - [ ] Write your first real post in `/content`
-- [ ] Add an `og:image` and `twitter:card` to `app/layout.tsx` for link previews
+- [ ] Add `og:image` and `twitter:card` meta tags to `app/layout.tsx` for link previews
 - [ ] Add a `/about` page or expand the bio section
-- [ ] Set up a custom domain in Vercel
 - [ ] Add Google Analytics or Plausible (one script tag in `layout.tsx`)
 - [ ] Automate broadcast: trigger `/api/broadcast` from a GitHub Action on merge to main
