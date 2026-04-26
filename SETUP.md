@@ -118,12 +118,14 @@ $$
 
 Use `<SignalCapture variant="investor" />` or `<SignalCapture variant="talent" />` at the bottom of any post.
 
-Reference images stored in Supabase:
+Reference images stored in `/public/assets`:
 
 ```mdx
 import { assetUrl } from "@/lib/assets"
 <img src={assetUrl("my-chart.png")} />
 ```
+
+Drop image files into `/public/assets/` and reference them by filename.
 
 ---
 
@@ -194,7 +196,7 @@ The `BROADCAST_SECRET` env var is the only auth — keep it out of version contr
 
 ### Image storage
 
-Upload images to the `assets` bucket in Supabase Storage. Reference them in MDX using the `assetUrl()` helper, which builds the full public CDN URL from your Supabase project URL.
+Drop image files into `/public/assets/`. Reference them in MDX using the `assetUrl()` helper, which returns `/assets/<filename>`. Vercel serves these from its edge CDN automatically.
 
 ---
 
